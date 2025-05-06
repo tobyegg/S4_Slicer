@@ -8,7 +8,9 @@ warnings.filterwarnings("error") # lets us catch warnings as errors
 # paths are relative to the directory in which the script is run
 # current paths are for running in S4_Slicer directory
 input_path = "../3MFs/MM_Segments/minions_decimated/3D/3dmodel.model"
-output_path = "../ASCII_STLs/minion_decimated.stl"
+output_name = "minion_decimated.stl"
+output_folder = "./input_models"
+output_path = f"{output_folder}/{output_name}"
 vertices = []
 triangles = []
 
@@ -46,7 +48,7 @@ print(f"Number of triangles: {len(triangles)}")
 print(f"Building STL...")
 
 new_stl = open(output_path, "w") # open file for writing
-new_stl.write("solid\n")
+new_stl.write(f"solid {output_name}\n")
 
 for triangle in triangles:
     # calculate normal
@@ -55,20 +57,20 @@ for triangle in triangles:
     B = v3 - v1
     n = np.cross(A, B)
     # n = n / np.linalg.norm(n)
-    try:
-        n = n / np.linalg.norm(n)
-    except RuntimeWarning:
-        print(f"Invalid value on divide! n is {n}, norm is {np.linalg.norm(n)}")
+    # try:
+    #     n = n / np.linalg.norm(n)
+    # except RuntimeWarning:
+    #     print(f"Invalid value on divide! n is {n}, norm is {np.linalg.norm(n)}")
 
     # write single triangle to STL
     new_stl.write(f"facet normal {n[0]} {n[1]} {n[2]}\n")
-    new_stl.write(f"\touter loop\n")
-    new_stl.write(f"\t\tvertex {v1[0]} {v1[1]} {v1[2]}\n")
-    new_stl.write(f"\t\tvertex {v2[0]} {v2[1]} {v2[2]}\n")
-    new_stl.write(f"\t\tvertex {v3[0]} {v3[1]} {v3[2]}\n")
-    new_stl.write(f"\tendloop\n")
+    new_stl.write(f"  outer loop\n")
+    new_stl.write(f"    vertex {v1[0]} {v1[1]} {v1[2]}\n")
+    new_stl.write(f"    vertex {v2[0]} {v2[1]} {v2[2]}\n")
+    new_stl.write(f"    vertex {v3[0]} {v3[1]} {v3[2]}\n")
+    new_stl.write(f"  endloop\n")
     new_stl.write(f"endfacet\n")
-new_stl.write("endsolid\n") #aren't archaic file formats from the 80's great?
+new_stl.write(f"endsolid {output_name}\n") #aren't archaic file formats from the 80's great?
 new_stl.close()
 
 print(f"Done! Written to {output_path}.")
