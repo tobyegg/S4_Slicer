@@ -12,7 +12,7 @@
 	<metadata name="ModificationDate" preserve="1">2025-05-07</metadata>
 	<metadata name="Application" preserve="1">PrusaSlicer-2.9.2</metadata>
 	<resources>
-		<object id="1" type="model" p:UUID="6234ef65-f01f-4166-9761-27f03f792315">
+		<object id="1" type="model" p:UUID="58c79603-e2c5-46c7-8639-defc7179b320">
 			<mesh>
 				<vertices>
 					<vertex x="24.684398" y="-4.785769" z="21.987124" />
@@ -1328,7 +1328,7 @@
 			</mesh>
 		</object>
 	</resources>
-	<build p:UUID="4b08ae5e-6fc2-42b1-9203-6309b03ba9af">
-		<item objectid="1" p:UUID="a32d9b26-16e9-4e2c-8f6c-65e0454dce36" transform="1 0 0 0 1 0 0 0 1 180 325.6 10"/>
+	<build p:UUID="0918bc88-6cc3-461c-8c5b-ea09c980465d">
+		<item objectid="1" p:UUID="89c9882e-b1e2-4806-b773-bc4f8ef9cb17" transform="1 0 0 0 1 0 0 0 1 180 325.6 10"/>
 	</build>
 </model>
